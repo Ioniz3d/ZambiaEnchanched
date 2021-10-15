@@ -1,0 +1,2251 @@
+﻿focus_tree = {
+	id = zambian_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = ZAM
+		}
+	}
+	
+	default = no
+
+	continuous_focus_position = { x = 50 y = 1000 }
+
+
+	focus = {
+		id = develop_the_country
+		icon = GFX_goal_generic_construct_civilian
+		x = 13
+		y = 2
+		
+		
+		bypass = {
+		}
+			
+		cost = 10
+		
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+		# 	 = {
+		# 		add_extra_state_shared_building_slots = 1
+		# 		add_building_construction = {
+		# 			type = industrial_complex
+		# 			level = 1
+		# 			instant_build = yes
+		# 	}
+		# 	}
+		# 		808 = {
+		# 		add_extra_state_shared_building_slots = 1
+		# 		add_building_construction = {
+		# 			type = industrial_complex
+		# 			level = 1
+		# 			instant_build = yes
+			
+		# 		}
+	
+		# 	}
+		# 	37 = {
+		# 		add_extra_state_shared_building_slots = 1
+		# 		add_building_construction = {
+		# 			type = industrial_complex
+		# 			level = 1
+		# 			instant_build = yes
+			
+		# 		}
+	
+		# 	}
+		 }
+		ai_will_do = {
+		}
+		
+		}
+
+
+	focus = {
+		id = build_sci
+		icon = GFX_goal_generic_consumer_goods
+		x = 3
+		y = 1
+		relative_position_id = develop_the_country
+		
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = develop_the_country }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 2
+				category = industry
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = electronics
+			}
+	
+		}
+	
+		
+		ai_will_do = {
+		}
+		
+	}
+	focus = {
+		id = build_infr
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 0
+		y = 1
+		relative_position_id = build_sci
+		
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = build_sci }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			37 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_building_construction = {
+						type = infrastructure
+						level = 3
+						instant_build = yes
+			}
+	
+		}
+	}
+		}
+		ai_will_do = {
+		}
+		
+	}
+	focus = {
+		id = build_infr1
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 2	
+		y = 1
+		relative_position_id = build_infr
+		
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = build_infr }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			807 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_building_construction = {
+						type = infrastructure
+						level = 3
+						instant_build = yes
+			}
+	
+		}
+		}
+		}
+		ai_will_do = {
+		}
+		
+		}
+	focus = {
+		id = build_infr2
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 0	
+		y = 1
+		relative_position_id = build_infr
+		
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = build_infr }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			808 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_building_construction = {
+						type = infrastructure
+						level = 3
+						instant_build = yes
+			}
+	
+		}
+		}
+		}
+		ai_will_do = {
+		}
+		
+		}
+	focus = {
+		id = build_infr3
+		icon = GFX_goal_generic_construct_infrastructure
+		x = -2	
+		y = 1
+		relative_position_id = build_infr
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = build_infr }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			99 = {
+				if = {
+					limit = { is_controlled_by = ROOT }
+					add_building_construction = {
+						type = infrastructure
+						level = 3
+						instant_build = yes
+			}
+	
+		}
+		}
+		}
+		ai_will_do = {
+		}
+		
+		}
+
+
+	focus = {
+		id = build_civ
+		icon = GFX_goal_generic_construct_civ_factory
+		x = -3
+		y = 1
+		relative_position_id = develop_the_country
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = develop_the_country }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+				add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes}
+				}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = industry
+		}
+			
+		}
+		ai_will_do = {
+		}
+		}
+	focus = {
+			id = build_civ1
+			icon = GFX_goal_generic_construct_civ_factory
+			x = 0
+			y = 1
+			relative_position_id = build_civ
+	
+			bypass = {
+			}
+			
+			cost = 10
+			prerequisite = { focus = build_civ }
+			
+			cancel_if_invalid = yes
+			continue_if_invalid = no
+			available_if_capitulated = no
+	
+			completion_reward = {
+				random_owned_state = {
+					prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+					add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes}
+					}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = industry
+			}
+				
+		}
+		ai_will_do = {
+		}
+		}
+	focus = {
+			id = build_civ2
+			icon = GFX_goal_generic_construct_civ_factory
+			x = 0
+			y = 1
+			relative_position_id = build_civ1
+	
+			bypass = {
+			}
+			
+			cost = 10
+			prerequisite = { focus = build_civ1 }
+			
+			cancel_if_invalid = yes
+			continue_if_invalid = no
+			available_if_capitulated = no
+	
+			completion_reward = {
+				random_owned_state = {
+					prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+					add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes}
+					}
+				
+		}
+		ai_will_do = {
+		}
+		}
+
+
+		focus = {
+			id = build_mil1
+			icon = GFX_goal_generic_construct_mil_factory
+			x = 0
+			y = 1
+			relative_position_id = develop_the_country
+			
+			bypass = {
+			}
+			
+			cost = 10
+			prerequisite = { focus = develop_the_country }
+			
+			cancel_if_invalid = yes
+			continue_if_invalid = no
+			available_if_capitulated = no
+	
+			completion_reward = {
+				random_owned_state = {
+					prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+					add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes}
+					}
+				
+		}
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = build_mil
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 0	
+		y = 3
+		relative_position_id = build_mil1
+		
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { 
+			focus = build_infr1
+			focus = build_infr2
+			focus = build_infr3
+		}
+		prerequisite = {
+			focus = build_mil1
+		}
+		prerequisite = {
+			focus = build_civ2
+		}
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			random_owned_state = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	
+		}
+		
+		ai_will_do = {
+		}
+		}
+	focus = {
+			id = build_fast
+			icon = GFX_goal_generic_construction2
+			x = 0
+			y = 1
+			relative_position_id = build_mil
+			
+			available = {
+				country_exists = DEN
+			}
+			bypass = {
+			}
+			
+			cost = 10
+			prerequisite = { focus = build_mil}
+			
+			cancel_if_invalid = yes
+			continue_if_invalid = no
+			available_if_capitulated = no
+	
+			completion_reward = {
+				add_ideas = { goodind }
+				
+		}
+		ai_will_do = {
+		}
+		}
+
+
+	#Political stuff
+	focus = {
+		id = zam_political_upheaval
+		icon = GFX_focus_eng_decolonization
+		x = 35
+		y = 2
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		
+		available = {
+			country_exits =	ZAM
+		} 
+		bypass = {
+		}
+		
+		cost = 9
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 40
+		}
+		}	
+	focus = {
+		id = A_more_equal_zambia
+		icon = GFX_goal_support_democracy
+		x = -8
+		y = 2
+		relative_position_id = zam_political_upheaval
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = zam_political_upheaval }
+		mutually_exclusive = { 
+			focus = Proudly_Zambian
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.2
+			}
+		}
+		ai_will_do = {
+			factor = 160
+		}
+		}
+	focus = {
+		id = zam_communism
+		icon = GFX_goal_support_communism
+		x = -3
+		y = 1
+		relative_position_id = A_more_equal_zambia
+		
+		cost = 10
+		available_if_capitulated = yes
+		prerequisite = { focus = A_more_equal_zambia }
+		mutually_exclusive = { 
+			focus = zam_For_each_his_voice }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = internationalism
+				days = 720
+			}
+		
+			add_popularity= { 
+				ideology = fascism 
+				popularity = 0.1 
+			}
+		}
+		}	
+	
+	focus = {
+		id = establishment_of_the_new_state
+		icon = GFX_focus_prc_agrarian_socialism
+		x = 0
+		y = 1
+		relative_position_id = zam_communism
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = zam_communism }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = { 
+				days = 365
+				idea = Political_Correctness
+			}
+		}
+		ai_will_do = {
+			factor = 160
+		}
+		}
+	
+	
+	
+	focus = {
+		id = organise
+		icon = GFX_goal_generic_soviet_construction
+		x = 0
+		y = 1
+		relative_position_id = establishment_of_the_new_state
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = establishment_of_the_new_state }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = nationalise_industry
+		icon = GFX_goal_generic_soviet_construction
+		x = -5.5
+		y = 1
+		relative_position_id = organise
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = organise }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = nationalise_industry2
+		icon = GFX_goal_generic_soviet_construction
+		x = 0
+		y = 1
+		relative_position_id = nationalise_industry
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = nationalise_industry }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = chase_out_the_bsac
+		icon = GFX_focus_kickBSAC
+		x = 0
+		y = 2.5
+		relative_position_id = nationalise_industry2
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = nationalise_industry2 }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+		focus = {
+			id = spiffing_brits
+			icon = GFX_focus_spiff
+			x = 0
+			y = 1
+			relative_position_id = chase_out_the_bsac
+			
+			available = {
+				country_exists = ZAM
+			}
+			bypass = {}
+			
+			cost = 10
+			prerequisite = { focus = chase_out_the_bsac }
+			cancel_if_invalid = yes
+			continue_if_invalid = no
+			available_if_capitulated = no
+			}
+
+
+	focus = {
+		id = zambian_peoples_army
+		icon = GFX_focus_generic_military_mission
+		x = 1
+		y = 1
+		relative_position_id = organise
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = organise }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+	focus = {
+		id = serving_the_people
+		icon = GFX_focus_generic_military_mission
+		x = 0
+		y = 1
+		relative_position_id = zambian_peoples_army
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = zambian_peoples_army }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = curb_tribal_leaders
+		icon = GFX_goal_tfv_sever_ties_with_uk
+		x = 0
+		y = 3
+		relative_position_id = organise
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = serving_the_people, 
+		focus = nationalise_industry2 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = african_ideas
+		icon = GFX_goal_support_communism
+		x = -2
+		y = 2
+		relative_position_id = curb_tribal_leaders
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = curb_tribal_leaders 
+		}
+		mutually_exclusive = {
+			focus = seek_soviet_guidance
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = spark_the_fire
+		icon = GFX_goal_support_communism
+		x = 0
+		y = 2
+		relative_position_id = african_ideas
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = african_ideas 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = ZAM_portugese
+		icon = GFX_goal_generic_military_sphere
+		x = 0
+		y = 1.5
+		relative_position_id = spark_the_fire
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { 
+		focus = spark_the_fire
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+#pamodzi
+
+	focus = {
+		id = liberate_british_colonies
+		icon = GFX_focus_attack_britain
+		x = -3.5
+		y = 1
+		relative_position_id = spark_the_fire
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { 
+		focus = spark_the_fire
+		focus = spiffing_brits
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = opose_the_soviets
+		icon = GFX_focus_generic_strike_at_democracy2
+		x = 0
+		y = 1
+		relative_position_id = ZAM_portugese
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { 
+		focus = spark_the_fire
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = false_idol
+		icon = GFX_focus_attack_soviet
+		x = 0
+		y = 3
+		relative_position_id = opose_the_soviets
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = opose_the_soviets }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		create_wargoal = {
+			target = SOV
+			type = annex_everything
+		}
+		}
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = destroy_the_imperialists
+		icon = GFX_focus_attack_france
+		x = 2
+		y = 2
+		relative_position_id = opose_the_soviets
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = opose_the_soviets }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = FRA
+		}
+		}
+		ai_will_do = {
+		}
+		}
+
+
+
+	focus = {
+		id = fortify_the_motherland
+		icon = GFX_goal_generic_construct_military
+		x = -1.5
+		y = 1
+		relative_position_id = african_ideas
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = african_ideas 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	
+	focus = {
+		id = seek_soviet_guidance
+		icon = GFX_focus_chi_mission_to_the_soviet_union
+		x = 0
+		y = 2
+		relative_position_id = curb_tribal_leaders
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = curb_tribal_leaders 
+		}
+		mutually_exclusive = {
+			focus = african_ideas
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+	focus = {
+		id = soviet_research_grants
+		icon = GFX_focus_generic_socialist_science
+		x = 0
+		y = 1
+		relative_position_id = seek_soviet_guidance
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {}
+		
+		cost = 10
+		prerequisite = { focus = seek_soviet_guidance 
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		}
+
+
+ #right wing from here on
+	focus = {
+		id = Proudly_Zambian
+		icon = GFX_goal_generic_political_pressure
+		x = 8
+		y = 2
+		relative_position_id = zam_political_upheaval
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = zam_political_upheaval }
+		mutually_exclusive = { 
+			focus = A_more_equal_zambia
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.2
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		}
+
+
+
+	focus = {
+		id = zam_fascism
+		icon = GFX_goal_support_fascism
+		x = 3
+		y = 1
+		relative_position_id = Proudly_Zambian
+		
+		cost = 10
+		available_if_capitulated = yes
+		prerequisite = { focus = Proudly_Zambian }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			add_timed_idea= { 
+		idea = nationalism
+		days = 720
+		}
+		add_popularity= { 
+		ideology = fascism 
+		popularity = 0.1 
+		}}}
+	
+
+	focus = {
+		id = zam_sway_the_masses
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		relative_position_id = zam_fascism
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = zam_fascism }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+				add_political_power = 150
+				add_timed_idea = {
+					idea = fascist_zambia
+					days = 365
+				}
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.2
+				}}
+		ai_will_do = {}
+		}
+
+
+	focus = {
+		id = zam_soon
+		icon = GFX_focus_generic_strike_at_democracy1
+		x = 0
+		y = 1
+		relative_position_id = zam_sway_the_masses
+		
+		available = {
+			fascism > 0.5
+		}
+		bypass = {
+		}
+			
+		cost = 7
+		prerequisite = { focus = zam_sway_the_masses }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			#country_event = { days = 2 id =  }
+		}
+		ai_will_do = {}
+		}
+
+
+	focus = {
+		id = gather_warsupport
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 0
+		y = 2
+		relative_position_id = zam_soon
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = zam_soon }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			add_war_support = 0.15
+		}
+		ai_will_do = {
+		}
+		
+		}
+
+
+	focus = {
+		id = a_national_army
+		icon = GFX_focus_generic_manpower
+		x = 0
+		y = 1
+		relative_position_id = gather_warsupport
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = gather_warsupport }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+		#	add_ideas = {  }
+		}
+		ai_will_do = {
+		}
+		
+		}
+
+	focus = {
+		id = zam_time_for_action
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 7
+		y = 1
+		relative_position_id = zam_soon
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+			
+		cost = 5
+		prerequisite = { focus = zam_soon }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			add_stability = -0.1
+		}
+		ai_will_do = {}
+		}
+
+
+	focus = {
+		id = zam_axis
+		icon = GFX_focus_chi_mission_to_germany
+		x = 2
+		y = 1
+		relative_position_id = zam_time_for_action
+		
+		available = {
+			country_exists = ZAM
+			GER = { has_government = fascism }
+		}
+		mutually_exclusive = { 
+			focus = zam_alliance
+		}
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = zam_time_for_action }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+	
+		completion_reward = {
+			GER = { add_to_faction = ZAM }
+		}
+		ai_will_do = {}
+		}
+
+
+	focus = {
+		id = claim_katanga
+		icon = GFX_goal_generic_consumer_goods
+		x = 0
+		y = 1
+		relative_position_id = zam_axis
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = zam_axis }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		#	add_state_claim = 138
+		}
+		
+		ai_will_do = {
+		}
+		}
+
+	focus = {
+		id = fasc_demand_katanga
+		icon = GFX_goal_generic_political_pressure
+		x = 0
+		y = 2
+		relative_position_id = claim_katanga
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = claim_katanga }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		SWE = {
+		#	country_event = 
+		}
+		}
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = the_copper_wall
+		icon = GFX_goal_generic_fortify_city
+		x = -2
+		y = 0
+		relative_position_id = fasc_demand_katanga
+		available = {	
+			country_exists = ZAM
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = fasc_demand_katanga }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { fortb }
+		}
+		ai_will_do = {
+		}
+		}
+		
+		focus = {
+			id = war_for_the_congo
+			icon = GFX_goal_generic_major_war
+			x = -2
+			y = 2
+			relative_position_id = fasc_demand_katanga
+			available = {
+				country_exists = ZAM
+			}
+			bypass = {
+			}
+			
+			cost = 9
+			prerequisite = { focus = fasc_demand_katanga }
+			cancel_if_invalid = yes
+			continue_if_invalid = no
+			available_if_capitulated = no
+	
+			completion_reward = {
+				add_war_support = 0.10
+				create_wargoal = {
+					type = annex_everything
+					target = BEL
+				}
+			}
+			
+	
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id 	= convince_the_germans
+		icon = GFX_goal_tripartite_pact
+		x = 2
+		y = 1
+		relative_position_id = zam_axis
+
+		available = {
+			country_exists = ZAM
+			is_in_faction_with = GER
+		}
+		bypass = {}
+
+		cost = 10
+		prerequisite = { focus = zam_axis }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			GER = {
+				#country_event = zambia
+			}
+		}
+		ai_will_do = {
+		}
+
+		}
+
+	focus = {
+		id = demand_namibia
+		icon = GFX_goal_generic_demand_territory
+		x = 2
+		y = 1
+		relative_position_id = convince_the_germans
+		
+		available = {
+			country_exists = ZAM
+			is_in_faction_with = GER
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = convince_the_germans }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			GER = {
+				#country_event = zambia
+			}
+		}
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = infr_namibia
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 0
+		y = 1
+		relative_position_id = demand_namibia
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = demand_namibia }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			37 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			
+			}
+		}
+		
+		}
+		ai_will_do = {
+		}
+		}
+
+	
+	focus = {
+		id = control_tanganyika
+		icon = GFX_goal_generic_demand_territory
+		x = 0
+		y = 2
+		relative_position_id = convince_the_germans
+		
+		available = {
+			country_exists = ZAM
+			is_in_faction_with = POR
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = convince_the_germans }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			POR = {
+				#country_event = zambia
+			}}
+		ai_will_do = {}
+		}
+
+
+	focus = {
+		id = industrialize_tangganyika
+		icon = GFX_focus_generic_industry_1
+		x = 0
+		y = 1
+		relative_position_id = control_tanganyika
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = control_tanganyika }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			37 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			
+			}
+		}
+		
+		}
+		ai_will_do = {
+		}
+		}
+
+	focus = {
+		id = zam_alliance
+		icon = GFX_goal_generic_alliance
+		x = -2
+		y = 1
+		relative_position_id = zam_time_for_action
+		
+		available = {
+			country_exists = ZAM
+		}
+		mutually_exclusive = { 
+			focus = zam_axis
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = zam_time_for_action }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_rule = [ can_create_factions = yes }
+			create_faction = "SANF"
+		}
+		ai_will_do = {}
+
+
+	focus = {
+		id = infl_southaf
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		relative_position_id = zam_alliance
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = zam_alliance }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			SAF = {
+				add_ideas = { fascist_influence } 
+			}
+		}
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = zam_alliance1
+		icon = GFX_focus_ZAM_invite_SAF
+		x = 0
+		y = 2
+		relative_position_id = infl_southaf 
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = infl_southaf }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			#custom_effect_tooltip = "h_d_l4"
+			hidden_effect = {
+			ZAM = {
+				add_to_faction = SAF
+			}
+			}
+		}
+		
+
+		ai_will_do = {}
+		}
+
+
+	focus = {
+		id = infl_botswana
+		icon = GFX_goal_generic_propaganda
+		x = -2
+		y = 2
+		relative_position_id = zam_alliance
+		
+		available = {
+			country_exists = ZAM
+		}
+		bypass = {
+		}
+			
+		cost = 10
+		prerequisite = { focus = zam_alliance }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+	
+		completion_reward = {
+			BOT = {
+				add_ideas = { fascist_influence } 
+			}
+		}
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = zam_alliance2
+		icon = GFX_focus_ZAM_invite_bot
+		x = 0
+		y = 2
+		relative_position_id = infl_botswana 
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = infl_botswana }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			#custom_effect_tooltip = "h_d_l4"
+			hidden_effect = {
+			ZAM = {
+				add_to_faction = BOT
+			}
+			}
+		}
+		
+
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = zam_revenge
+		icon = GFX_focus_attack_britain
+		x = 0 
+		y = 2
+		relative_position_id = zam_alliance1
+		
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 11
+		prerequisite = { 
+		focus = zam_alliance1 
+		focus = zam_alliance2
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = ENG
+			}
+		}
+		
+		ai_will_do = {
+		}
+		}
+
+
+	#military stuff
+
+	#ground stuff
+
+
+	focus = {
+		id = army_reform
+		icon = GFX_focus_generic_manpower
+		x = 63
+		y = 2
+		#relative_position_id = liberate_finland
+		
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		#prerequisite = { focus = liberate_finland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		army_experience = 50
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = land_doctrine
+		}
+		}
+		ai_will_do = {
+		}
+		}
+
+	focus = {
+		id = red_guard
+		icon = GFX_goal_generic_consumer_goods
+		x = 0
+		y = 1
+		relative_position_id = army_reform
+		
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 14
+		prerequisite = { focus = army_reform }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		add_ideas = { anti_mussolini_reforms }
+		}
+
+		ai_will_do = {
+		}
+		}
+
+
+	focus = {
+		id = zambian_tank_core
+		icon = GFX_focus_generic_license_production
+		x = -2
+		y = 1
+		relative_position_id = red_guard
+
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = red_guard }
+		mutually_exclusive = { 
+			focus = landthing
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		add_tech_bonus = {
+			bonus = 1.5
+			uses = 1
+			category = cat_light_armor
+		}
+		}
+		ai_will_do = {
+		}
+		}
+	
+	
+	focus = {
+		id = landthing
+		icon = GFX_goal_generic_small_arms
+		x = 2
+		y = 1
+		relative_position_id = red_guard
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = red_guard }
+		mutually_exclusive = { 
+			focus = scandinavian_tank_core
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 1
+			category = artillery
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 1
+			category = land_doctrine
+		}
+		}
+		}
+		ai_will_do = {
+		}
+		}
+	focus = {
+		id = more_guns
+		icon = GFX_goal_generic_army_artillery2
+		x = 0
+		y = 1
+		relative_position_id = landthing
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = landthing }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = anti_mussolini_reforms
+				}
+				swap_ideas = {
+					remove_idea = anti_mussolini_reforms
+					add_idea = anti_mussolini_reforms2
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_idea = anti_mussolini_reforms
+						has_idea = anti_mussolini_reforms3
+					}
+				}
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = anti_mussolini_reforms
+						add_idea = anti_mussolini_reforms2
+					}
+				}
+			}
+		}
+		
+
+		ai_will_do = {
+		}
+		}
+	focus = {
+		id = more_guns2
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 0
+		y = 1
+		relative_position_id = more_guns
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = more_guns }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = improved_prod
+		}
+		
+
+		ai_will_do = {
+		}
+		}
+
+
+	#air stuff
+
+	focus = {
+		id = fighter_focusd
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = aviation_effortd }
+		mutually_exclusive = { focus = bomber_focusd }
+		x = -1
+		y = 1
+		relative_position_id = aviation_effortd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 2
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}
+		}
+		}
+	focus = {
+		id = fighter_focusd2
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = fighter_focusd }
+		x = -1
+		y = 1
+		relative_position_id = fighter_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 3
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+			}
+		}
+		}
+	focus = {
+		id = fighter_focusd3
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = fighter_focusd }
+		x = -3
+		y = 1
+		relative_position_id = fighter_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}
+		}
+		}
+
+	focus = {
+		id = bomber_focusd
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = aviation_effortd }
+		mutually_exclusive = { focus = fighter_focusd }
+		x = 1
+		y = 1
+		relative_position_id = aviation_effortd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_bonus
+				bonus = 1.0
+				uses = 2
+				technology = strategic_bomber1
+				technology = strategic_bomber2
+				technology = strategic_bomber3
+				category = tactical_bomber
+			}
+		}
+		}
+	focus = {
+		id = bomber_focusd2
+		icon = GFX_goal_poland_goal
+		prerequisite = { focus = bomber_focusd }
+		x = 1
+		y = 1
+		relative_position_id = bomber_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_bonus
+				bonus = 1.0
+				uses = 3
+				technology = strategic_bomber1
+				technology = strategic_bomber2
+				technology = strategic_bomber3
+				category = tactical_bomber
+			}
+		}
+		}
+	focus = {
+		id = bomber_focusd3
+		icon = GFX_goal_generic_air_naval_bomber
+		prerequisite = { focus = bomber_focusd }
+		x = 3
+		y = 1
+		relative_position_id = bomber_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_bonus
+				bonus = 1.0
+				uses = 3
+				technology = naval_bomber1
+				technology = naval_bomber2
+				technology = naval_bomber3
+			}
+		}
+		}
+
+	focus = {
+		id = aviation_effortd_2
+		icon = GFX_goal_generic_air_doctrine
+		prerequisite = { focus = bomber_focusd focus = fighter_focusd }
+		x = -1
+		y = 1
+		relative_position_id = bomber_focusd
+		cost = 10
+
+		search_filters = {   FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+
+		complete_tooltip = {
+			air_experience = 25
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			
+			add_tech_bonus = {
+				name =  air_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_doctrine
+			}
+		}
+		completion_reward = {
+			air_experience = 25
+			if = {
+				limit = {
+					capital_scope = {
+						OR = {
+							NOT = { is_controlled_by = ROOT }
+							NOT = {
+								free_building_slots = {
+									building = air_base
+									size > 1
+								}
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						is_controlled_by = ROOT
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}				
+				}
+			}
+			add_tech_bonus = {
+				name =  air_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+
+
+	focus = {
+		id = CAS_effortd
+		icon = GFX_goal_generic_CAS
+		prerequisite = { focus = aviation_effortd_2 }
+		x = 0
+		y = 1
+		relative_position_id = aviation_effortd_2
+		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAS_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = cas_bomber
+			}
+			}
+		}
+	focus = {
+		id = fast_plane
+		icon = GFX_goal_continuous_air_production
+		prerequisite = { focus = CAS_effortd }
+		x = 0
+		y = 1
+		relative_position_id = CAS_effortd
+		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = { danskraf }
+		}
+		}
+
+		focus = {
+			id = aviation_effortd
+			icon = GFX_goal_generic_build_airforce
+			x = 72
+			y = 2
+			cost = 10
+
+			available_if_capitulated = yes
+
+
+			complete_tooltip = {
+				air_experience = 25
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+							
+				add_tech_bonus = {
+					name = air_doc_bonus
+					bonus = 1.0
+					uses = 1
+					category = air_doctrine
+				}			
+			}
+
+			completion_reward = {
+				air_experience = 25
+
+				if = {
+					limit = {
+						capital_scope = {
+							NOT = {
+								free_building_slots = {
+									building = air_base
+									size > 1
+								}
+							}
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							free_building_slots = {
+								building = air_base
+								size > 1
+							}
+						}
+						add_building_construction = {
+							type = air_base
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						capital_scope = {
+							free_building_slots = {
+								building = air_base
+								size > 1
+							}
+						}
+					}
+					capital_scope = {
+						add_building_construction = {
+							type = air_base
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
+				add_tech_bonus = {
+					name = air_doc_bonus
+					bonus = 1.0
+					uses = 1
+					category = air_doctrine
+				}
+			}
+		}
+
+
+
+
+}
+
+
+

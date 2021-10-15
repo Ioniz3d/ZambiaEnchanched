@@ -1,0 +1,5573 @@
+﻿focus_tree = {
+	id = denmark_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = DEN
+		}
+	}
+	
+	default = no
+	
+	continuous_focus_position = { x = 50 y = 1700 }
+
+	focus = {
+		id = den_danske_politiske_verden
+		icon = GFX_focus_generic_self_management
+		x = 35
+		y = 2
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 9
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 100
+		}
+		ai_will_do = {
+			factor = 40
+		}
+	}
+focus = {
+		id = politik_fasc
+		icon = GFX_goal_generic_political_pressure
+		x = 8
+		y = 2
+		relative_position_id = den_danske_politiske_verden
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = den_danske_politiske_verden }
+		mutually_exclusive = { 
+			focus = socialdemokrat
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.2
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+focus = {
+		id = socialdemokrat
+		icon = GFX_focus_hol_war_on_pacifism
+		x = -8
+		y = 2
+		relative_position_id = den_danske_politiske_verden
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = den_danske_politiske_verden }
+		mutually_exclusive = { 
+			focus = politik_fasc
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.2
+			}
+		}
+		ai_will_do = {
+			factor = 160
+		}
+	}
+focus = {
+	id = fokuser_fascisme
+	icon = GFX_goal_generic_propaganda
+	x = 4
+	y = 1
+	relative_position_id = politik_fasc
+	
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = politik_fasc }
+	mutually_exclusive = {
+		focus = restore_monarch
+	}
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+			add_timed_idea = {
+				idea = fascist_denmark
+				days = 365
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.2
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+	id = vores_land
+	icon = GFX_focus_generic_strike_at_democracy1
+	x = 0
+	y = 1
+	relative_position_id = fokuser_fascisme
+	
+	available = {
+		fascism > 0.5
+	}
+	bypass = {
+	}
+		
+	cost = 7
+	prerequisite = { focus = fokuser_fascisme }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		country_event = { days = 2 id = denmark.16 }
+	}
+	ai_will_do = {
+	}
+}
+focus = {
+	id = udvid_politik
+	icon = GFX_goal_generic_more_territorial_claims
+	x = 7
+	y = 1
+	relative_position_id = vores_land
+	
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 5
+	prerequisite = { focus = vores_land }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		add_stability = -0.1
+	}
+	ai_will_do = {
+	}
+}
+focus = {
+	id = allier_tyskland
+	icon = GFX_focus_chi_mission_to_germany
+	x = 2
+	y = 1
+	relative_position_id = udvid_politik
+	
+	available = {
+		country_exists = DEN
+		GER = { has_government = fascism }
+	}
+	mutually_exclusive = { 
+		focus = dansk_alliance
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = udvid_politik }
+	
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+
+	completion_reward = {
+		GER = { add_to_faction = DEN }
+	}
+	ai_will_do = {
+	}
+}
+	focus = {
+		id = dansk_alliance
+		icon = GFX_goal_generic_alliance
+		x = -2
+		y = 1
+		relative_position_id = udvid_politik
+		
+		available = {
+			country_exists = DEN
+		}
+		mutually_exclusive = { 
+			focus = allier_tyskland
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = udvid_politik }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_rule = [ can_create_factions = yes }
+			create_faction = "Copenhagen Pact"
+		}
+		ai_will_do = {
+		}
+	}
+	focus = {
+		id = slesvigholsten
+		icon = GFX_goal_generic_demand_territory
+		x = 2
+		y = 1
+		relative_position_id = allier_tyskland
+		
+		available = {
+			country_exists = DEN
+			is_in_faction_with = GER
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = allier_tyskland }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			GER = {
+				country_event = denmark.1
+			}
+		}
+		ai_will_do = {
+		}
+	}
+	focus = {
+		id = slesvigholsten2
+		icon = GFX_goal_generic_demand_territory
+		x = 3
+		y = 1
+		relative_position_id = slesvigholsten
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = slesvigholsten }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_state_core = 58
+			58 = {
+				set_state_name = "Slesvig-Holsten"
+			}
+		}
+		ai_will_do = {
+		}
+	}
+		focus = {
+		id = slesvigholsten3
+		icon = GFX_focus_generic_industry_1
+		x = 2
+		y = 1
+		relative_position_id = slesvigholsten2
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = slesvigholsten2 }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			58 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+		
+			}
+
+		}
+		}
+		ai_will_do = {
+		}
+	}
+		focus = {
+		id = slesvigholsten4
+		icon = GFX_focus_generic_manpower
+		x = 0
+		y = 1
+		relative_position_id = slesvigholsten2
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = slesvigholsten2 }
+	
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			58 = {
+				add_manpower = -100000
+			}
+			809 = {
+				add_manpower = 50000
+			}
+			807 = {
+				add_manpower = 50000
+			}
+
+		}
+		
+		ai_will_do = {
+		}
+	}
+focus = {
+	id = slesvigholsten5
+	icon = GFX_goal_generic_construct_infrastructure
+	x = -2
+	y = 1
+	relative_position_id = slesvigholsten2
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = slesvigholsten2 }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		58 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+        }
+    }
+}
+	
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = gather_warsupport
+	icon = GFX_goal_generic_more_territorial_claims
+	x = 0
+	y = 1
+	relative_position_id = vores_land
+	
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = vores_land }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		add_war_support = 0.15
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = dansk_milita
+	icon = GFX_focus_generic_manpower
+	x = 0
+	y = 1
+	relative_position_id = gather_warsupport
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = gather_warsupport }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		add_ideas = { dansk_militar }
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = infl_nor
+	icon = GFX_goal_generic_propaganda
+	x = -1
+	y = 2
+	relative_position_id = dansk_alliance
+	
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = dansk_alliance }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		NOR = {
+			add_ideas = { fascist_influence } 
+		}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = infl_swe
+	icon = GFX_goal_generic_propaganda
+	x = 0
+	y = 1
+	relative_position_id = dansk_alliance
+	
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = dansk_alliance }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		SWE = {
+			add_ideas = { fascist_influence } 
+		}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = infl_fin
+	icon = GFX_goal_generic_propaganda
+	x = 1	
+	y = 2
+	relative_position_id = dansk_alliance
+	
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = dansk_alliance }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		FIN = {
+			add_ideas = { fascist_influence } 
+		}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_ind
+	icon = GFX_goal_generic_construct_civilian
+	x = 13
+	y = 2
+	#relative_position_id = dansk_alliance
+	
+	bypass = {
+	}
+		
+	cost = 10
+	#prerequisite = { focus = dansk_alliance }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		807 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		}
+		}
+			808 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+		37 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_green
+	icon = GFX_goal_generic_construct_civilian
+	x = 7
+	y = 1
+	relative_position_id = build_ind
+	
+	bypass = {
+	}
+	available = {
+		owns_state = 101
+	}
+	cost = 10
+	prerequisite = { focus = build_ind }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+	set_country_flag = amogles
+		101 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		}
+		}
+		}
+		completion_reward = {
+		101 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes
+		}
+		}
+		}
+	
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_green1
+	icon = GFX_goal_generic_construct_naval_dockyard
+	x = 2
+	y = 1
+	relative_position_id = build_green
+	
+	bypass = {
+	}
+	available = {
+		owns_state = 101
+	}
+	cost = 10
+	prerequisite = { focus = build_green}
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		
+		101 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+				}
+			}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_ice
+	icon = GFX_goal_generic_construct_civilian
+	x = 0
+	y = 1
+	relative_position_id = build_green
+	
+	bypass = {
+	}
+		available = {
+		owns_state = 100
+	}
+	cost = 10
+	prerequisite = { focus = build_green }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+	set_country_flag = amogles1
+		100 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		}
+		
+		}
+	}
+	completion_reward = {
+	100 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+		}
+		}
+		}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_ice1
+	icon = GFX_goal_generic_construct_naval_dockyard
+	x = 2
+	y = 1
+	relative_position_id = build_ice
+	
+	bypass = {
+	}
+		available = {
+		owns_state = 100
+	}
+	cost = 10
+	prerequisite = { focus = build_ice }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		
+		100 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+				}
+			}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_faro
+	icon = GFX_goal_generic_construct_civilian
+	x = 0
+	y = 1
+	relative_position_id = build_ice
+	
+	bypass = {
+	}
+		available = {
+		owns_state = 337
+	}
+	cost = 10
+	prerequisite = { focus = build_ice }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+	set_country_flag = amogles2
+		337 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		}
+		
+		}
+	}
+	completion_reward = {
+	337 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+		}
+		}
+		}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_faro1
+	icon = GFX_goal_generic_construct_naval_dockyard
+	x = 2
+	y = 1
+	relative_position_id = build_faro
+	
+	bypass = {
+	}
+		available = {
+		owns_state = 337
+	}
+	cost = 10
+	prerequisite = { focus = build_faro }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		
+		337 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+
+				}
+			}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_oga
+	icon = GFX_goal_generic_consumer_goods
+	x = 3
+	y = 1
+	relative_position_id = build_ind
+	
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = build_ind }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		add_tech_bonus = {
+			bonus = 1.5
+			uses = 2
+			category = industry
+		}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = electronics
+		}
+
+    }
+
+	
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_infr
+	icon = GFX_goal_generic_construct_infrastructure
+	x = 0
+	y = 1
+	relative_position_id = build_oga
+	
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = build_oga }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		37 = {
+			if = {
+				limit = { is_controlled_by = ROOT }
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+        }
+
+    }
+}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_infr1
+	icon = GFX_goal_generic_construct_infrastructure
+	x = 2	
+	y = 1
+	relative_position_id = build_infr
+	
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = build_infr }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		807 = {
+			if = {
+				limit = { is_controlled_by = ROOT }
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+        }
+
+    }
+}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_infr2
+	icon = GFX_goal_generic_construct_infrastructure
+	x = 0	
+	y = 1
+	relative_position_id = build_infr
+	
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = build_infr }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		808 = {
+			if = {
+				limit = { is_controlled_by = ROOT }
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+        }
+
+    }
+}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = build_infr3
+	icon = GFX_goal_generic_construct_infrastructure
+	x = -2	
+	y = 1
+	relative_position_id = build_infr
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = build_infr }
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		99 = {
+			if = {
+				limit = { is_controlled_by = ROOT }
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+        }
+
+    }
+}
+	}
+	ai_will_do = {
+	}
+	
+}
+focus = {
+	id = den_roede_feber
+	icon = GFX_focus_generic_soviet_politics
+	x = -3
+	y = 1
+	relative_position_id = socialdemokrat
+		
+	available = {
+		country_exists = DEN
+	}
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { focus = socialdemokrat }
+	mutually_exclusive = { focus = individual_freedoms }
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+	add_timed_idea = {
+				idea = commun_denmark
+				days = 365
+			}
+		add_stability = -0.2
+		add_popularity = {
+			ideology = communism
+			popularity = 0.2
+		}
+	}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = establishment_of_the_new_state
+		icon = GFX_focus_prc_agrarian_socialism
+		x = 0
+		y = 1
+		relative_position_id = den_roede_feber
+		
+		available = {
+			country_exists = DEN
+			Communism > 0.5
+		}
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = den_roede_feber }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = { days = 2 id = denmark.15 }
+		}
+		ai_will_do = {
+		}
+}
+
+focus = {
+		id = build_up_the_capital
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		relative_position_id = establishment_of_the_new_state
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = establishment_of_the_new_state }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			37 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			
+			}
+		}
+		
+	}
+	ai_will_do = {
+	}
+	}
+
+focus = {
+		id = continue_the_revolution
+		icon = GFX_goal_support_fourth_int
+		x = 0
+		y = 1
+		relative_position_id = build_up_the_capital
+			
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = build_up_the_capital }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 150
+			
+			}
+		
+		ai_will_do = {
+		}
+	}
+	
+	
+focus = {
+		id = the_peoples_army
+		icon = GFX_focus_generic_little_entente
+		x = -1
+		y = 1
+		relative_position_id = continue_the_revolution
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = continue_the_revolution }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = { army_bad } 
+		}
+		
+		ai_will_do = {
+		}
+	}
+focus = {
+		id = the_spirit_of_revolution
+		icon = GFX_focus_BUL_condemn_macedonian_organizations
+		x = 0
+		y = 1
+		relative_position_id = the_peoples_army
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = the_peoples_army }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.2
+			add_ideas = { dansk_militar }
+			}
+		
+		ai_will_do = {
+		}
+}
+focus = {
+		id = nationalize_the_industry
+		icon = GFX_goal_generic_soviet_construction
+		x = 1
+		y = 1
+		relative_position_id = continue_the_revolution
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = continue_the_revolution }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { cummunist_industry }
+			807 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		}
+		}
+			808 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+		
+
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = stabilize_nation
+		icon = GFX_goal_generic_consumer_goods
+		x = 0
+		y = 1
+		relative_position_id = dansk_milita
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = dansk_milita }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { cummunist_industry }
+			807 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		}
+		}
+			808 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+		
+
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = better_ind
+		icon = GFX_goal_generic_consumer_goods
+		x = 0
+		y = 2
+		relative_position_id = stabilize_nation
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = stabilize_nation }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = cummunist_industry
+				}
+				swap_ideas = {
+					remove_idea = cummunist_industry
+					add_idea = cummunist_industry2
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_idea = cummunist_industry
+						has_idea = cummunist_industry3
+					}
+				}
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = cummunist_industry
+						add_idea = cummunist_industry2
+					}
+				}
+			}
+		
+
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = extra_research_slot1
+		icon = GFX_focus_research
+		x = 0
+		y = 1
+		relative_position_id = better_ind
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = better_ind }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = fasc_army
+		icon = GFX_focus_generic_little_entente
+		x = -2
+		y = 1
+		relative_position_id = better_ind
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 12
+		prerequisite = { focus = better_ind }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = army_bad
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = fasc_army2
+		icon = GFX_focus_DEN_elite_army
+		x = 0
+		y = 1
+		relative_position_id = fasc_army
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 15
+		prerequisite = { focus = fasc_army }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = dansk_militar
+				}
+				swap_ideas = {
+					remove_idea = dansk_militar
+					add_idea = dansk_militar2
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_idea = dansk_militar
+					}
+				}
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = dansk_militar
+						add_idea = dansk_militar2
+					}
+				}
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = amongus
+		icon = GFX_goal_generic_consumer_goods
+		x = 0
+		y = 1
+		relative_position_id = allier_tyskland
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = allier_tyskland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_state_claim = 138
+		}
+		
+		ai_will_do = {
+		}
+}
+
+	
+
+
+
+focus = {
+		id = expand_the_civilian_industry
+		icon = GFX_goal_generic_consumer_goods
+		x = 0
+		y = 1
+		relative_position_id = nationalize_the_industry
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = nationalize_the_industry }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			99 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+		37 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+		
+
+}
+		ai_will_do = {
+		}
+
+
+}
+
+focus = {
+		id = king_go_bye_bye
+		icon = GFX_goal_tfv_sever_ties_with_uk
+		x = -1
+		y = 1
+		relative_position_id = expand_the_civilian_industry
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = expand_the_civilian_industry }
+		prerequisite = { focus = the_spirit_of_revolution }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = denmark.3
+		}
+		ai_will_do = {
+		}
+}
+	
+focus = {
+		id = power_to_the_soviets
+		icon = GFX_focus_por_workers_of_iberia
+		x = 0
+		y = 1
+		relative_position_id = king_go_bye_bye
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = king_go_bye_bye }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.2
+			add_stability = 0.2
+		
+
+}
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = military_industry_commie1
+		icon = GFX_goal_generic_soviet_construction
+		x = 0
+		y = 1
+		relative_position_id = power_to_the_soviets
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = power_to_the_soviets }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			807 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+808 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+			809 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+		
+
+}
+
+
+
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = spread_the_revolution_north
+		icon = GFX_goal_generic_major_war
+		x = -1
+		y = 1
+		relative_position_id = military_industry_commie1
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = military_industry_commie1 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = NOR
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = unify_scandinavia
+		icon = GFX_focus_DEN_strike_swe
+		x = 0
+		y = 1
+		relative_position_id = spread_the_revolution_north
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = spread_the_revolution_north }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SWE
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = scandinavian_unification
+		icon = GFX_focus_DEN_flag_kalmar
+		x = 0
+		y = 1
+		relative_position_id = unify_scandinavia
+		
+		available = {
+			country_exists = DEN
+			owns_state = 142
+			owns_state = 110
+			owns_state = 143
+			owns_state = 144
+			owns_state = 666
+			owns_state = 38
+			owns_state = 141
+			owns_state = 138
+			owns_state = 139
+			owns_state = 140
+			owns_state = 124
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = unify_scandinavia }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 200
+			add_state_core = 110
+			add_state_core = 143
+			add_state_core = 142
+			add_state_core = 144
+			add_state_core = 666
+			add_state_core = 38
+			add_state_core = 141
+			add_state_core = 139
+			add_state_core = 140
+			add_state_core = 138
+			add_state_core = 124
+			set_cosmetic_tag = SCA_UNIFIED
+		}
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = further_economic_development
+		icon = GFX_goal_generic_consumer_goods
+		x = 1
+		y = 1
+		relative_position_id = military_industry_commie1
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = military_industry_commie1 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			807 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		}
+		}
+
+		809 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+		
+
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = heavy_industry_dev
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		relative_position_id = further_economic_development
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = further_economic_development }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		99 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+			37 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes}
+		}
+}
+
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = permanent_revolution
+		icon = GFX_focus_generic_join_comintern
+		x = 0
+		y = 1
+		relative_position_id = heavy_industry_dev
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = heavy_industry_dev }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { perm_rev }
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = oppose_stalin
+		icon = GFX_focus_fra_loyalty_trotzky
+		x = -1
+		y = 1
+		relative_position_id = permanent_revolution
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = permanent_revolution }
+		prerequisite = { focus = scandinavian_unification }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		SOV = {
+		add_opinion_modifier = { target = DEN modifier = large_decrease }
+		}
+		}
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = liberate_finland
+		icon = GFX_focus_DEN_strike_fin
+		x = 0
+		y = 1
+		relative_position_id = oppose_stalin
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = oppose_stalin }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		create_wargoal = {
+			type = puppet_wargoal_focus
+			target = FIN
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = expand_the_universities
+		icon = GFX_focus_generic_military_academy
+		x = 0
+		y = 3
+		relative_position_id = liberate_finland
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = liberate_finland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { improved_res }
+		}
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = extra_research_slot2
+		icon = GFX_focus_generic_socialist_science
+		x = 2
+		y = 1
+		relative_position_id = further_economic_development
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = further_economic_development }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		add_research_slot = 1
+		}
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = destroy_the_dictator
+		icon = GFX_focus_attack_soviet
+		x = 2
+		y = 2
+		relative_position_id = liberate_finland
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = liberate_finland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = SOV
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = liberate_the_danes_in_sleswig
+		icon = GFX_focus_attack_germany
+		x = -2
+		y = 2
+		relative_position_id = liberate_finland
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = liberate_finland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = GER
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = eliminate_the_imperialists
+		icon = GFX_focus_attack_britain
+		x = 4
+		y = 1
+		relative_position_id = liberate_finland
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = liberate_finland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		create_wargoal = {
+			type = annex_everything
+			target = ENG
+		}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = crush_the_dream
+		icon = GFX_focus_eng_crush_the_dream
+		x = -4
+		y = 1
+		relative_position_id = liberate_finland
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = liberate_finland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		create_wargoal = {
+			type = puppet_wargoal_focus
+			target = USA
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = restore_monarch
+		icon = GFX_focus_rom_royal_dictatorship
+		x = -4
+		y = 1
+		relative_position_id = politik_fasc
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = politik_fasc }
+		mutually_exclusive = {
+			focus = fokuser_fascisme
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = { 
+				days = 365
+				idea = neutral_denmark
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.2
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = return_king
+		icon = GFX_focus_DEN_return_king
+		x = 0
+		y = 1
+		relative_position_id = restore_monarch
+		available = {
+			neutrality > 0.4
+		}
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = restore_monarch }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = { days = 2 id = denmark.14 }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = cement_king
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		x = 0
+		y = 1
+		relative_position_id = return_king
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = return_king }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.1
+			add_war_support = 0.10
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.1
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = reestablish_army
+		icon = GFX_goal_generic_military_sphere
+		x = 5
+		y = 1
+		relative_position_id = cement_king
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = cement_king }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = {
+				army_bad
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = kings_army
+		icon = GFX_focus_generic_little_entente
+		x = 0
+		y = 1
+		relative_position_id = reestablish_army
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = reestablish_army }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = {
+				dansk_militar
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = reclaim_skane
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 0
+		y = 1
+		relative_position_id = cement_king
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = cement_king }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_state_claim = 138
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = demand_skane
+		icon = GFX_goal_generic_demand_territory
+		x = -3
+		y = 1
+		relative_position_id = reclaim_skane
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = reclaim_skane }
+		mutually_exclusive = {
+			focus = pursue_swe
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			SWE = {
+				country_event = { days = 1 id = denmark.4 }
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = pursue_swe
+		icon = GFX_goal_generic_major_war
+		x = 3
+		y = 1
+		relative_position_id = reclaim_skane
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 9
+		prerequisite = { focus = reclaim_skane }
+		mutually_exclusive = {
+			focus = demand_skane
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.10
+			create_wargoal = {
+				type = annex_everything
+				target = SWE
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = reintegrate_skane
+		icon = GFX_focus_generic_industry_1
+		x = 6
+		y = 1
+		relative_position_id = demand_skane
+		available = {
+			owns_state = 138
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = pursue_swe focus = demand_skane }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_state_core = 138
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = stabilize_den
+		icon = GFX_goal_generic_construct_civilian
+		x = -6
+		y = 1
+		relative_position_id = pursue_swe
+		available = {	
+			country_exists = DEN
+			has_war = no
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = pursue_swe focus = demand_skane }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { cummunist_industry }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = stabilize_den2
+		icon = GFX_goal_generic_construction
+		x = 0
+		y = 1
+		relative_position_id = stabilize_den
+		available = {	
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = stabilize_den }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = cummunist_industry
+				}
+				swap_ideas = {
+					remove_idea = cummunist_industry
+					add_idea = cummunist_industry2
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_idea = cummunist_industry
+						has_idea = cummunist_industry3
+					}
+				}
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = cummunist_industry
+						add_idea = cummunist_industry2
+					}
+				}
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = kings_army2
+		icon = GFX_focus_DEN_elite_army
+		x = 0
+		y = 1
+		relative_position_id = kings_army
+		available = {	
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 12
+		prerequisite = { focus = kings_army }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = dansk_militar
+				}
+				swap_ideas = {
+					remove_idea = dansk_militar
+					add_idea = dansk_militar2
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_idea = dansk_militar
+					}
+				}
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = dansk_militar
+						add_idea = dansk_militar2
+					}
+				}
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = other_amb
+		icon = GFX_focus_generic_monarchy_2
+		x = -3
+		y = 1
+		relative_position_id = pursue_swe
+		available = {	
+			country_exists = DEN
+			has_war = no
+		}
+		bypass = {
+		}
+		
+		cost = 6
+		prerequisite = { focus = pursue_swe focus = demand_skane }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 150
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = demand_norway
+		icon = GFX_goal_demand_sudetenland
+		x = -1
+		y = 1
+		relative_position_id = other_amb
+		available = {	
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = other_amb }
+		mutually_exclusive = {
+			focus = attack_nor
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			NOR = { country_event = { days = 2 id = denmark.7 } }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = attack_nor
+		icon = GFX_goal_generic_major_war
+		x = 1
+		y = 1
+		relative_position_id = other_amb
+		available = {	
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = other_amb }
+		mutually_exclusive = {
+			focus = demand_norway
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.10
+			create_wargoal = {
+				type = annex_everything
+				target = NOR
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = reform_den_nor
+		icon = GFX_focus_DEN_flag_den
+		x = 1
+		y = 1
+		relative_position_id = demand_norway
+		available = {	
+			country_exists = DEN
+			has_war = no
+			owns_state = 142
+			owns_state = 110
+			owns_state = 143
+			owns_state = 144
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = demand_norway focus = attack_nor }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_state_core = 142
+			add_state_core = 110
+			add_state_core = 143
+			add_state_core = 144
+			set_cosmetic_tag = DEN_DENN
+			hidden_effect = {
+				news_event = { hours = 6 id = news.346 }
+				country_event = { days = 2 id = denmark.10 }
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = strike_swe
+		icon = GFX_focus_DEN_strike_swe
+		x = 0
+		y = 1
+		relative_position_id = reform_den_nor
+		available = {	
+			country_exists = SWE
+		}
+		
+		bypass = {
+			OR = {
+			has_war_with = SWE
+			NOT = {
+				country_exists = SWE
+			}
+			}
+		}
+		
+		cost = 10
+		prerequisite = { focus = reform_den_nor }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		if = {
+			limit = {
+				country_exists = SWE
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SWE
+			}
+			else = {
+			
+			}
+		}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = industrial_upgrades0
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 0
+		y = 1
+		relative_position_id = stabilize_den2
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = stabilize_den2 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+			random_owned_state = {
+			prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+			random_owned_state = {
+			prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = industrial_upgrades4
+		icon = GFX_focus_generic_industry_3
+		x = -1
+		y = 2
+		relative_position_id = stabilize_den2
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = stabilize_den2 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes}
+				}
+			random_owned_state = {
+			prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes}
+				}
+			random_owned_state = {
+			prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes}
+				}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = industrial_upgrades2
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 1
+		y = 2
+		relative_position_id = stabilize_den2
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = stabilize_den2 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes}
+				}
+			random_owned_state = {
+			prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes}
+				}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = reform_kalmar
+		icon = GFX_focus_DEN_flag_kalmar
+		x = 0
+		y = 1
+		relative_position_id = strike_swe
+		
+		available = {
+			owns_state = 142
+			owns_state = 110
+			owns_state = 143
+			owns_state = 144
+			owns_state = 666
+			owns_state = 38
+			owns_state = 141
+			owns_state = 138
+			owns_state = 139
+			owns_state = 140
+			owns_state = 124
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = strike_swe}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 200
+			custom_effect_tooltip = h_d_l3
+			hidden_effect = {
+			add_state_core = 110
+			add_state_core = 143
+			add_state_core = 142
+			add_state_core = 144
+			add_state_core = 666
+			add_state_core = 38
+			add_state_core = 141
+			add_state_core = 139
+			add_state_core = 140
+			add_state_core = 138
+			add_state_core = 124
+			}
+			set_cosmetic_tag = SCA_UNIFIED
+		}
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = demand_fin
+		icon = GFX_focus_DEN_demand_fin
+		x = -3
+		y = 1
+		relative_position_id = reform_kalmar
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = reform_kalmar }
+		mutually_exclusive = {
+			focus = strike_fin
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			FIN = { country_event = { days = 2 id = denmark.11 } }
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = strike_fin
+		icon = GFX_focus_DEN_strike_fin
+		x = 3
+		y = 1
+		relative_position_id = reform_kalmar
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = reform_kalmar }
+		mutually_exclusive = {
+			focus = demand_fin
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = FIN
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = core_fin
+		icon = GFX_focus_generic_industry_1
+		x = -3
+		y = 1
+		relative_position_id = strike_fin
+		available = {	
+			owns_state = 150
+			owns_state = 111
+			owns_state = 149
+			owns_state = 145
+			owns_state = 148
+		}
+		
+		bypass = {
+		}
+		
+		cost = 9
+		prerequisite = { focus = demand_fin focus = strike_fin }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			custom_effect_tooltip = "h_d_l"
+			hidden_effect = {
+			add_state_core = 150
+			add_state_core = 149
+			add_state_core = 148
+			add_state_core = 145
+			if = {
+				limit = {
+					146 = { is_owned_by = DEN }
+				}   
+				add_state_core = 146
+			}
+			if = {
+				limit = {
+					147 = { is_owned_by = DEN }
+				}   
+				add_state_core = 147
+			}
+			
+			if = {
+				limit = {
+					722 = { is_owned_by = DEN }
+				}   
+				add_state_core = 722
+			}
+			
+		}
+		}
+		
+	ai_will_do = {
+	}
+}
+focus = {
+		id = attack_sov
+		icon = GFX_goal_generic_war_with_comintern
+		x = 0
+		y = 1
+		relative_position_id = strike_fin
+		available = {
+			date > 1940.6.1
+		}
+		
+		bypass = {
+			has_war_with = SOV
+		}
+		
+		cost = 10
+		prerequisite = { focus = demand_fin focus = strike_fin }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SOV
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = southern_claims
+		icon = GFX_goal_generic_demand_territory
+		x = -6
+		y = 1
+		relative_position_id = strike_fin
+		available = {
+			country_exists = GER
+			NOT = {
+				controls_state = 58
+			}
+		}
+		
+		bypass = {
+			controls_state = 58
+		}
+		
+		cost = 7
+		prerequisite = { focus = demand_fin focus = strike_fin }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_state_claim = 58
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = southern_claims1
+		icon = GFX_focus_attack_germany
+		x = 0
+		y = 1
+		relative_position_id = southern_claims
+		available = {
+			country_exists = GER
+		}
+		
+		bypass = {
+			OR = {
+			owns_state = 58
+			has_war_with = GER
+			}
+		}
+		
+		cost = 10
+		prerequisite = { focus = southern_claims }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = GER
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = southern_claims2
+		icon = GFX_focus_generic_industry_3
+		x = 0
+		y = 1
+		relative_position_id = southern_claims1
+		available = {
+			country_exists = DEN
+			owns_state = 58
+		}
+		
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = southern_claims1 }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_state_core = 58
+			58 = {
+				set_state_name = "Slesvig-Holsten"
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = claims_former_fin
+		icon = GFX_goal_generic_demand_territory
+		x = 0
+		y = 1
+		relative_position_id = core_fin
+		available = {	
+		}
+		
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = core_fin }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+					146 = { is_owned_by = DEN }
+					}
+				}   
+				add_state_claim = 146
+			}
+			if = {
+				limit = {
+					NOT = {
+					147 = { is_owned_by = DEN }
+					}
+				}   
+				add_state_claim = 147
+			}
+			if = {
+				limit = {
+					NOT = {
+					215 = { is_owned_by = DEN }
+					}
+				}   
+				add_state_claim = 215
+			}
+			if = {
+				limit = {
+					NOT = {
+					216 = { is_owned_by = DEN }
+					}
+				}   
+				add_state_claim = 216
+			}
+			if = {
+				limit = {
+					NOT = {
+					213 = { is_owned_by = DEN }
+					}
+				}   
+				add_state_claim = 213
+			}
+			if = {
+				limit = {
+					NOT = {
+					722 = { is_owned_by = DEN }
+					}
+				}   
+				add_state_claim = 722
+			}
+		}
+		
+	ai_will_do = {
+	}
+}
+focus = {
+		id = core_former_fin
+		icon = GFX_focus_generic_industry_3
+		x = 3
+		y = 1
+		relative_position_id = claims_former_fin
+		available = {	
+			owns_state = 146
+			owns_state = 147
+			owns_state = 215
+			owns_state = 216
+			owns_state = 213
+			owns_state = 722
+		}
+		
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = attack_sov }
+		prerequisite = { focus = claims_former_fin }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = h_d_l2
+		hidden_effect = {
+			add_state_core = 150
+			add_state_core = 149
+			add_state_core = 148
+			add_state_core = 145
+			if = {
+				limit = {
+					146 = { is_owned_by = DEN }
+				}   
+				add_state_core = 146
+			}
+			if = {
+				limit = {
+					147 = { is_owned_by = DEN }
+				}   
+				add_state_core = 147
+			}
+			
+			if = {
+				limit = {
+					722 = { is_owned_by = DEN }
+				}   
+				add_state_core = 722
+			}
+			if = {
+				limit = {
+					215 = { is_owned_by = DEN }
+				}   
+				add_state_core = 215
+			}
+			if = {
+				limit = {
+					216 = { is_owned_by = DEN }
+				}   
+				add_state_core = 216
+			}
+			if = {
+				limit = {
+					213 = { is_owned_by = DEN }
+				}   
+				add_state_core = 213
+			}
+			}
+			
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = expand
+		icon = GFX_focus_generic_monarchy_1
+		x = -3
+		y = 1
+		relative_position_id = core_former_fin
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = southern_claims2 }
+		prerequisite = { focus = core_former_fin }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { expand_den }
+			set_rule = { can_create_factions = yes }
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = individual_freedoms
+		icon = GFX_focus_DEN_generic_support_democracy
+		x = 3
+		y = 1
+		relative_position_id = socialdemokrat
+		available = {	
+				country_exists = DEN
+			}
+		
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = socialdemokrat }
+		mutually_exclusive = { focus = den_roede_feber }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 150
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.2
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = stable_demo
+		icon = GFX_goal_generic_improve_relations
+		x = 0
+		y = 1
+		relative_position_id = individual_freedoms
+		available = {	
+				country_exists = DEN
+			}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = individual_freedoms }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { political_gain }
+		}
+	ai_will_do = {
+		factor = 320
+	}
+}
+focus = {
+		id = rember_1864
+		icon = GFX_goal_generic_military_sphere
+		x = -2
+		y = 1
+		relative_position_id = stable_demo
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = stable_demo }
+		mutually_exclusive = { focus = break_oneutrality }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { irember_1 }
+		}
+	ai_will_do = {
+		factor = 160
+	}
+}
+focus = {
+		id = break_oneutrality
+		icon = GFX_focus_generic_manpower
+		x = 2
+		y = 1
+		relative_position_id = stable_demo
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = stable_demo }
+		mutually_exclusive = { focus = rember_1864 }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		add_stability = -0.1
+		ENG = {
+			add_opinion_modifier = {
+				target = DEN
+				modifier = large_increase
+			}
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = DEN
+				modifier = large_increase
+			}
+		}
+		USA = {
+			add_opinion_modifier = {
+				target = DEN
+				modifier = large_increase
+			}
+		}
+		country_event = { days = 1 id = denmark.17 }
+		}
+	ai_will_do = {
+		factor = 20
+	}
+}
+focus = {
+		id = northern_lights
+		icon = GFX_goal_generic_alliance
+		x = 0
+		y = 1
+		relative_position_id = break_oneutrality
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = break_oneutrality }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+			create_faction = "Northern Lights"
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = northern_lights1
+		icon = GFX_focus_DEN_invite_nor
+		x = 0
+		y = 1
+		relative_position_id = northern_lights
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = northern_lights }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			DEN = {
+				add_to_faction = NOR
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = northern_lights2
+		icon = GFX_focus_DEN_invite_swe
+		x = 0
+		y = 1
+		relative_position_id = northern_lights1
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = northern_lights1 }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			DEN = {
+				add_to_faction = SWE
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = northern_lights3
+		icon = GFX_focus_DEN_infl_fin
+		x = 0
+		y = 1
+		relative_position_id = northern_lights2
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = northern_lights2 }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			diplomatic_relation = {
+				country = FIN
+				relation = guarantee
+				active = yes
+			}
+			FIN = {
+				add_opinion_modifier = {
+					target = DEN
+					modifier = huge_increase
+				}
+					
+				add_popularity = { ideology = democratic popularity = 0.2 }
+				add_ideas = { democratic_influence }
+				diplomatic_relation = {
+						country = DEN
+						relation = guarantee
+						active = yes
+					}
+			}
+			
+			
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = northern_lights4
+		icon = GFX_focus_invite_finland
+		x = 0
+		y = 1
+		relative_position_id = northern_lights3
+		available = {	
+			country_exists = DEN
+			FIN = {
+				democratic > 0.4
+			}
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = northern_lights3 }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			DEN = {
+				add_to_faction = FIN
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = our_brokenmil
+		icon = GFX_focus_generic_little_entente
+		x = -2
+		y = 1
+		relative_position_id = northern_lights
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = northern_lights }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = { army_bad }
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = defence_of_demo
+		icon = GFX_goal_generic_defence
+		x = 0
+		y = 1
+		relative_position_id = our_brokenmil
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = our_brokenmil }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { defence_off_democracy }
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = promote_sci_acd
+		icon = GFX_focus_research
+		x = 0
+		y = 1
+		relative_position_id = rember_1864
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 7
+		prerequisite = { focus = rember_1864 }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = promote_sci_king
+		icon = GFX_focus_research
+		x = 0
+		y = 2
+		relative_position_id = industrial_upgrades0
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = industrial_upgrades4 }
+		prerequisite = { focus = industrial_upgrades2 }
+		prerequisite = { focus = industrial_upgrades0 }
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = continue_industry
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		relative_position_id = promote_sci_acd
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = promote_sci_acd }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = forsvar
+		icon = GFX_focus_generic_little_entente
+		x = 0
+		y = 1
+		relative_position_id = continue_industry
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = continue_industry }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_ideas = { army_bad }
+			
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = welfarestate
+		icon = GFX_goal_generic_construction
+		x = 0
+		y = 1
+		relative_position_id = forsvar
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = forsvar }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { cummunist_industry }
+			
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = danish_volunteers
+		icon = GFX_focus_generic_manpower
+		x = 0
+		y = 1
+		relative_position_id = forsvar
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = forsvar }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_rule = { can_send_volunteers = yes }
+			add_ideas = { danish_vol }
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = danish_volunteers1
+		icon = GFX_focus_generic_manpower
+		x = 2
+		y = 1
+		relative_position_id = kings_army
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = kings_army }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_rule = { can_send_volunteers = yes }
+			add_ideas = { danish_vol }
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = hold_the_line
+		icon = GFX_goal_generic_fortify_city
+		x = 0
+		y = 1
+		relative_position_id = danish_volunteers
+		available = {	
+			country_exists = DEN
+		}
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = danish_volunteers }
+		mutually_exclusive = {
+			focus = submit_ger
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { dansk_militar2 }
+			add_ideas = { fortb }
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = submit_ger
+		icon = GFX_focus_chi_mission_to_germany
+		x = -2
+		y = 1
+		relative_position_id = danish_volunteers
+		available = {	
+			country_exists = DEN
+			has_war_with = GER
+			date > 1940.4.1
+
+		}
+		
+		bypass = {
+		}
+		
+		cost = 1
+		prerequisite = { focus = danish_volunteers }
+		mutually_exclusive = {
+			focus = hold_the_line
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			GER = {
+				puppet = DEN
+			}
+		}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = build_civ
+		icon = GFX_goal_generic_construct_civ_factory
+		x = -3
+		y = 1
+		relative_position_id = build_ind
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = build_ind }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+				add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes}
+				}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = industry
+		}
+			
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = build_civ1
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		relative_position_id = build_civ
+
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = build_civ }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+				add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes}
+				}
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = industry
+		}
+			
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = build_civ2
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		relative_position_id = build_civ1
+
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = build_civ1 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+				add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes}
+				}
+			
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = build_mil1
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 0
+		y = 1
+		relative_position_id = build_ind
+		
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = build_ind }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+				prioritize = { 99 807 808 809 138 140 141 143 144 110 38 666 124 58 }
+				add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes}
+				}
+			
+}
+	ai_will_do = {
+	}
+}
+	focus = {
+	id = build_mil
+	icon = GFX_goal_generic_construct_mil_factory
+	x = 0	
+	y = 3
+	relative_position_id = build_mil1
+	
+	bypass = {
+	}
+		
+	cost = 10
+	prerequisite = { 
+		focus = build_infr1
+		focus = build_infr2
+		focus = build_infr3
+	}
+	prerequisite = {
+		focus = build_mil1
+	}
+	prerequisite = {
+		focus = build_civ2
+	}
+
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+
+	completion_reward = {
+		random_owned_state = {
+		add_extra_state_shared_building_slots = 2
+		add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+		}
+	}
+
+    }
+	
+	ai_will_do = {
+	}
+}
+focus = {
+		id = build_fast
+		icon = GFX_goal_generic_construction2
+		x = 0
+		y = 1
+		relative_position_id = build_mil
+		
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = build_mil}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { goodind }
+			
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = aviation_effortd
+		icon = GFX_goal_generic_build_airforce
+		x = 72
+		y = 2
+		cost = 10
+
+		available_if_capitulated = yes
+
+
+		complete_tooltip = {
+			air_experience = 25
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+						
+			add_tech_bonus = {
+				name = air_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_doctrine
+			}			
+		}
+
+		completion_reward = {
+			air_experience = 25
+
+			if = {
+				limit = {
+					capital_scope = {
+						NOT = {
+							free_building_slots = {
+								building = air_base
+								size > 1
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = air_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = fighter_focusd
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = aviation_effortd }
+		mutually_exclusive = { focus = bomber_focusd }
+		x = -1
+		y = 1
+		relative_position_id = aviation_effortd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 2
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}
+		}
+	}
+	focus = {
+		id = fighter_focusd2
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = fighter_focusd }
+		x = -1
+		y = 1
+		relative_position_id = fighter_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 3
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+			}
+		}
+	}
+	focus = {
+		id = fighter_focusd3
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = fighter_focusd }
+		x = -3
+		y = 1
+		relative_position_id = fighter_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}
+		}
+	}
+
+	focus = {
+		id = bomber_focusd
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = aviation_effortd }
+		mutually_exclusive = { focus = fighter_focusd }
+		x = 1
+		y = 1
+		relative_position_id = aviation_effortd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_bonus
+				bonus = 1.0
+				uses = 2
+				technology = strategic_bomber1
+				technology = strategic_bomber2
+				technology = strategic_bomber3
+				category = tactical_bomber
+			}
+		}
+	}
+	focus = {
+		id = bomber_focusd2
+		icon = GFX_goal_poland_goal
+		prerequisite = { focus = bomber_focusd }
+		x = 1
+		y = 1
+		relative_position_id = bomber_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_bonus
+				bonus = 1.0
+				uses = 3
+				technology = strategic_bomber1
+				technology = strategic_bomber2
+				technology = strategic_bomber3
+				category = tactical_bomber
+			}
+		}
+	}
+	focus = {
+		id = bomber_focusd3
+		icon = GFX_goal_generic_air_naval_bomber
+		prerequisite = { focus = bomber_focusd }
+		x = 3
+		y = 1
+		relative_position_id = bomber_focusd
+		cost = 10
+
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_bonus
+				bonus = 1.0
+				uses = 3
+				technology = naval_bomber1
+				technology = naval_bomber2
+				technology = naval_bomber3
+			}
+		}
+	}
+
+	focus = {
+		id = aviation_effortd_2
+		icon = GFX_goal_generic_air_doctrine
+		prerequisite = { focus = bomber_focusd focus = fighter_focusd }
+		x = -1
+		y = 1
+		relative_position_id = bomber_focusd
+		cost = 10
+
+		search_filters = {   FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+
+		complete_tooltip = {
+			air_experience = 25
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			
+			add_tech_bonus = {
+				name =  air_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_doctrine
+			}
+		}
+		completion_reward = {
+			air_experience = 25
+			if = {
+				limit = {
+					capital_scope = {
+						OR = {
+							NOT = { is_controlled_by = ROOT }
+							NOT = {
+								free_building_slots = {
+									building = air_base
+									size > 1
+								}
+							}
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					capital_scope = {
+						is_controlled_by = ROOT
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}				
+				}
+			}
+			add_tech_bonus = {
+				name =  air_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+	
+
+	focus = {
+		id = CAS_effortd
+		icon = GFX_goal_generic_CAS
+		prerequisite = { focus = aviation_effortd_2 }
+		x = 0
+		y = 1
+		relative_position_id = aviation_effortd_2
+		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAS_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = cas_bomber
+			}
+		}
+	}
+	focus = {
+		id = fast_plane
+		icon = GFX_goal_continuous_air_production
+		prerequisite = { focus = CAS_effortd }
+		x = 0
+		y = 1
+		relative_position_id = CAS_effortd
+		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = { danskraf }
+		}
+	}
+	focus = {
+		id = naval_effortd
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 55
+		y = 2
+		cost = 10
+
+		search_filters = {  FOCUS_FILTER_INDUSTRY }
+		
+		available_if_capitulated = yes
+
+
+		available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+		complete_tooltip = {
+			navy_experience = 25
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+			}
+		}
+		
+		completion_reward = {
+			navy_experience = 25
+			if = {
+				limit = {
+					NOT = {
+						any_owned_state = {
+							dockyard > 0
+							free_building_slots = {
+								building = dockyard
+								size > 2
+								include_locked = yes
+							}
+						}
+					}
+					any_owned_state = {
+						is_coastal = yes
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_coastal = yes
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = dockyard
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+				random_owned_controlled_state = {
+					limit = {
+						dockyard > 0
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = dockyard
+						level = 2
+						instant_build = yes
+					}
+				}
+				random_state = {
+					limit = {
+						controller = { tag = ROOT }
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = dockyard
+						level = 1
+						instant_build = yes
+					}
+				}
+						
+		}
+	}
+
+	focus = {
+		id = flexible_navyd
+		icon = GFX_goal_generic_build_navy
+		prerequisite = { focus = naval_effortd }
+		mutually_exclusive = { focus = large_navyd }
+		x = -1
+		y = 1
+		relative_position_id = naval_effortd
+		cost = 10
+		
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = sub_op_bonus
+				bonus = 1.0
+				uses = 2
+				technology = convoy_interdiction_ti
+				technology = unrestricted_submarine_warfare
+				technology = wolfpacks
+				technology = advanced_submarine_warfare
+				technology = combined_operations_raiding
+			}
+		}
+	}
+
+	focus = {
+		id = large_navyd
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = naval_effortd }
+		mutually_exclusive = { focus = flexible_navyd }
+		x = 1
+		y = 1
+		relative_position_id = naval_effortd
+		cost = 10
+		
+		search_filters = {   FOCUS_FILTER_RESEARCH }
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fleet_in_being_bonus
+				bonus = 1.0
+				uses = 2
+				category = fleet_in_being_tree
+			}
+		}
+	}
+
+	focus = {
+		id = submarine_effortd
+		icon = GFX_goal_generic_navy_submarine
+		prerequisite = { focus = flexible_navyd focus = large_navyd }
+		x = 0
+		y = 1
+		relative_position_id = flexible_navyd
+		cost = 10
+		
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ss_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+
+	focus = {
+		id = cruiser_effortd
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = large_navyd focus = flexible_navyd }
+		x = 0
+		y = 1
+		relative_position_id = large_navyd
+		cost = 10
+		
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = cr_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = cl_tech
+				category = ca_tech
+			}
+		}
+	}
+
+	focus = {
+		id = destroyer_effortd
+		icon = GFX_goal_generic_wolf_pack
+		prerequisite = { focus = submarine_effortd }
+		x = 0
+		y = 1
+		relative_position_id = submarine_effortd
+		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dd_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+
+	focus = {
+		id = capital_ships_effortd
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = cruiser_effortd }
+		x = 0
+		y = 1
+		relative_position_id = cruiser_effortd
+		cost = 10
+
+		search_filters = {  FOCUS_FILTER_RESEARCH }
+		
+		available_if_capitulated = yes
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				all_owned_state = {
+					OR = {
+						is_coastal = no
+						dockyard < 1
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			navy_experience = 25
+			add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = bc_tech
+				category = bb_tech
+				category = cv_tech
+			}
+		}
+	}
+focus = {
+		id = army_reform
+		icon = GFX_focus_generic_manpower
+		x = 63
+		y = 2
+		#relative_position_id = liberate_finland
+		
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		#prerequisite = { focus = liberate_finland }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		army_experience = 50
+		add_tech_bonus = {
+			bonus = 1
+			uses = 1
+			category = land_doctrine
+		}
+}
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = red_guard
+		icon = GFX_goal_generic_consumer_goods
+		x = 0
+		y = 1
+		relative_position_id = army_reform
+		
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 14
+		prerequisite = { focus = army_reform }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		 add_ideas = { anti_mussolini_reforms }
+		}
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = scandinavian_tank_core
+		icon = GFX_focus_generic_license_production
+		x = -2
+		y = 1
+		relative_position_id = red_guard
+
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = red_guard }
+		mutually_exclusive = { 
+			focus = landthing
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		add_tech_bonus = {
+			bonus = 1.5
+			uses = 1
+			category = cat_light_armor
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = landthing
+		icon = GFX_goal_generic_small_arms
+		x = 2
+		y = 1
+		relative_position_id = red_guard
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 5
+		prerequisite = { focus = red_guard }
+		mutually_exclusive = { 
+			focus = scandinavian_tank_core
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 1
+			category = artillery
+		add_tech_bonus = {
+			bonus = 1.0
+			uses = 1
+			category = land_doctrine
+		}
+		}
+}
+	ai_will_do = {
+	}
+}
+focus = {
+		id = more_guns
+		icon = GFX_goal_generic_army_artillery2
+		x = 0
+		y = 1
+		relative_position_id = landthing
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = landthing }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+                limit = {
+                    has_idea = anti_mussolini_reforms
+                }
+                swap_ideas = {
+                    remove_idea = anti_mussolini_reforms
+                    add_idea = anti_mussolini_reforms2
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_idea = anti_mussolini_reforms
+                        has_idea = anti_mussolini_reforms3
+                    }
+                }
+                effect_tooltip = {
+                    swap_ideas = {
+                        remove_idea = anti_mussolini_reforms
+                        add_idea = anti_mussolini_reforms2
+                    }
+                }
+            }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = more_guns2
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 0
+		y = 1
+		relative_position_id = more_guns
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = more_guns }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = improved_prod
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = build_civ_fasc
+		icon = GFX_focus_generic_industry_3
+		x = 2
+		y = 1
+		relative_position_id = better_ind
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = better_ind }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+			prioritize = { 807 808 809 38 99 }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+		
+			}
+
+		}
+		random_owned_state = {
+			prioritize = { 807 808 809 38 99 }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+		
+			}
+
+		}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = build_mil_fasc1
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 0
+		y = 1
+		relative_position_id = build_civ_fasc
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = build_civ_fasc }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = {
+			prioritize = { 807 808 809 38 99 }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+		
+			}
+			}
+			random_owned_state = {
+			prioritize = { 807 808 809 38 99 }
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+		
+			}
+
+		}
+		}
+		
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = death_up
+		icon = GFX_goal_generic_army_artillery
+		x = 0
+		y = 1
+		relative_position_id = more_guns2
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = more_guns2 }
+		mutually_exclusive = { focus = better_guns }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+                limit = {
+                    has_idea = anti_mussolini_reforms2
+                }
+                swap_ideas = {
+                    remove_idea = anti_mussolini_reforms2
+                    add_idea = anti_mussolini_reforms6
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_idea = anti_mussolini_reforms2
+                        has_idea = anti_mussolini_reforms3
+                    }
+                }
+                effect_tooltip = {
+                    swap_ideas = {
+                        remove_idea = anti_mussolini_reforms2
+                        add_idea = anti_mussolini_reforms6
+                    }
+                }
+            }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = better_guns
+		icon = GFX_goal_generic_military_sphere
+		x = 2
+		y = 1
+		relative_position_id = more_guns2
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = more_guns2 }
+		mutually_exclusive = { focus = death_up }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+                limit = {
+                    has_idea = anti_mussolini_reforms6
+                }
+                swap_ideas = {
+                    remove_idea = anti_mussolini_reforms6
+                    add_idea = anti_mussolini_reforms7
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_idea = anti_mussolini_reforms6
+                        has_idea = anti_mussolini_reforms3
+                    }
+                }
+                effect_tooltip = {
+                    swap_ideas = {
+                        remove_idea = anti_mussolini_reforms6
+                        add_idea = anti_mussolini_reforms7
+                    }
+                }
+            }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = more_tonks
+		icon = GFX_focus_generic_tank_production
+		x = 0
+		y = 1
+		relative_position_id = scandinavian_tank_core
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = scandinavian_tank_core }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+                limit = {
+                    has_idea = anti_mussolini_reforms
+                }
+                swap_ideas = {
+                    remove_idea = anti_mussolini_reforms
+                    add_idea = anti_mussolini_reforms2
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_idea = anti_mussolini_reforms
+                        has_idea = anti_mussolini_reforms3
+                    }
+                }
+                effect_tooltip = {
+                    swap_ideas = {
+                        remove_idea = anti_mussolini_reforms
+                        add_idea = anti_mussolini_reforms2
+                    }
+                }
+            }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = tonk_master
+		icon = GFX_focus_generic_combined_arms
+		x = 0
+		y = 1
+		relative_position_id = more_tonks
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = more_tonks }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+                limit = {
+                    has_idea = anti_mussolini_reforms2
+                }
+                swap_ideas = {
+                    remove_idea = anti_mussolini_reforms2
+                    add_idea = anti_mussolini_reforms3
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_idea = anti_mussolini_reforms2
+                        has_idea = anti_mussolini_reforms4
+                    }
+                }
+                effect_tooltip = {
+                    swap_ideas = {
+                        remove_idea = anti_mussolini_reforms2
+                        add_idea = anti_mussolini_reforms3
+                    }
+                }
+            }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = faster_faster_faster
+		icon = GFX_goal_continuous_armor_production
+		x = 0
+		y = 1
+		relative_position_id = tonk_master
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = tonk_master }
+		mutually_exclusive = { focus = heavy_tonks }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+                limit = {
+                    has_idea = anti_mussolini_reforms3
+                }
+                swap_ideas = {
+                    remove_idea = anti_mussolini_reforms3
+                    add_idea = anti_mussolini_reforms4
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_idea = anti_mussolini_reforms3
+                        has_idea = anti_mussolini_reforms5
+                    }
+                }
+                effect_tooltip = {
+                    swap_ideas = {
+                        remove_idea = anti_mussolini_reforms3
+                        add_idea = anti_mussolini_reforms4
+                    }
+                }
+            }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+
+focus = {
+		id = heavy_tonks
+		icon = GFX_goal_generic_army_tanks
+		x = -2
+		y = 1
+		relative_position_id = tonk_master
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = tonk_master }
+		mutually_exclusive = { focus = faster_faster_faster }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			if = {
+                limit = {
+                    has_idea = anti_mussolini_reforms3
+                }
+                swap_ideas = {
+                    remove_idea = anti_mussolini_reforms3
+                    add_idea = anti_mussolini_reforms5
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        has_idea = anti_mussolini_reforms3
+                        has_idea = anti_mussolini_reforms4
+                    }
+                }
+                effect_tooltip = {
+                    swap_ideas = {
+                        remove_idea = anti_mussolini_reforms3
+                        add_idea = anti_mussolini_reforms5
+                    }
+                }
+            }
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = fasc_army3
+		icon = GFX_focus_generic_manpower
+		x = 0
+		y = 1
+		relative_position_id = fasc_army2
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = fasc_army2 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_rule = { can_send_volunteers = yes }
+			add_ideas = danish_vol
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = fasc_demand_skane
+		icon = GFX_goal_generic_political_pressure
+		x = 0
+		y = 1
+		relative_position_id = amongus
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 8
+		prerequisite = { focus = amongus }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		SWE = {
+			country_event = denmark.4
+		}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = dansk_alliance2
+		icon = GFX_focus_DEN_invite_nor
+		x = 0
+		y = 2
+		relative_position_id = infl_nor 
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = infl_nor }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = "h_d_l4"
+			hidden_effect = {
+			DEN = {
+				add_to_faction = NOR
+			}
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = dansk_alliance3
+		icon = GFX_focus_DEN_invite_swe
+		x = 0
+		y = 2
+		relative_position_id = infl_swe
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = infl_swe }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = "h_d_l5"
+			hidden_effect = {
+			DEN = {
+				add_to_faction = SWE
+			}
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = dansk_alliance4
+		icon = GFX_focus_invite_finland
+		x = 0
+		y = 2
+		relative_position_id = infl_fin
+		available = {
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = infl_fin }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = "h_d_l6"
+			hidden_effect = {
+			DEN = {
+				add_to_faction = FIN
+			}
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = wargoal_ger
+		icon = GFX_focus_attack_germany
+		x = -1
+		y = 1
+		relative_position_id = dansk_alliance4
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = dansk_alliance4 }
+		prerequisite = { focus = dansk_alliance3 }
+		prerequisite = { focus = dansk_alliance2 }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = GER
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = wargoal_swe
+		icon = GFX_focus_DEN_strike_swe
+		x = 0
+		y = 1
+		relative_position_id = fasc_demand_skane
+		available = {
+			country_exists = SWE
+		}
+		bypass = {
+			has_war_with = SWE
+		}
+		
+		cost = 10
+		prerequisite = { focus = fasc_demand_skane }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = SWE
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+focus = {
+		id = wargoal_nor
+		icon = GFX_goal_generic_major_war
+		x = 0
+		y = 1
+		relative_position_id = wargoal_swe
+		available = {
+			country_exists = DEN
+		}
+		bypass = {
+		}
+		
+		cost = 10
+		prerequisite = { focus = wargoal_swe }
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = NOR
+			}
+		}
+		
+
+	ai_will_do = {
+	}
+}
+
+
+}
+	
+
+
+
